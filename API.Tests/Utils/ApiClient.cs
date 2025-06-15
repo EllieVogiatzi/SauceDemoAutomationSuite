@@ -1,4 +1,5 @@
 ﻿using MyE2ETests.API.Tests.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,5 +29,13 @@ namespace MyE2ETests.API.Tests.Utils
         {
             return await _client.GetAsync($"pet/{id}");
         }
+
+        public async Task<HttpResponseMessage> PostRawAsync(string url, object payload)
+        {
+            var json = JsonConvert.SerializeObject(payload);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            return await _client.PostAsync(url, content);
+        }
+
     }
 }

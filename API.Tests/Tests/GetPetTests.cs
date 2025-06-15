@@ -8,19 +8,11 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyE2ETests.API.Tests
+namespace API.Tests.Tests
 {
-    public class PetTests
+    public class GetPetTests
     {
         private readonly ApiClient _api = new ApiClient();
-
-        [Fact]
-        public async Task AddValidPet_ReturnsSuccess()
-        {
-            var pet = new Pet { Id = 123, Name = "Fluffy", Status = "available", PhotoUrls = new[] { "https://img.com/fluffy.jpg" } };
-            var response = await _api.AddPet(pet);
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        }
 
         [Fact]
         public async Task GetPet_ReturnsFluffy()
@@ -29,6 +21,13 @@ namespace MyE2ETests.API.Tests
             var body = await response.Content.ReadAsStringAsync();
             var pet = JsonConvert.DeserializeObject<Pet>(body);
             Assert.Equal("Fluffy", pet.Name);
+        }
+
+        [Fact]
+        public async Task GetPet_NonExistent_ReturnsNotFound()
+        {
+            var response = await _api.GetPet(99999);
+            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
     }
 }
