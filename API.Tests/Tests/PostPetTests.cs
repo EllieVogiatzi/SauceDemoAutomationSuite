@@ -1,6 +1,5 @@
 ﻿using MyE2ETests.API.Tests.Models;
 using MyE2ETests.API.Tests.Utils;
-using Newtonsoft.Json;
 using System.Net;
 
 namespace API.Tests.Tests
@@ -12,7 +11,7 @@ namespace API.Tests.Tests
         [Fact]
         public async Task AddValidPet_ReturnsSuccess()
         {
-            var pet = new Pet { Id = 123, Name = "Fluffy", Status = "available", PhotoUrls = new[] { "https://img.com/fluffy.jpg" } };
+            var pet = new Pet { Id = 123, Name = "doggie", Status = "available", PhotoUrls = new[] { "https://img.com/fluffy.jpg" } };
             var response = await _api.AddPet(pet);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }

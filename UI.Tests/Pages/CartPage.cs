@@ -40,9 +40,11 @@ namespace MyE2ETests.UI.Tests.Pages
             return productList;
         }
 
-        /// Removes a specific item from the cart by product name.
+        /// <summary>
+        /// Removes an item from the cart by clicking the remove button for the specified product name.
         /// </summary>
-        /// <param name="productName">The name of the product to remove.</param>
+        /// <param name="productName">The name of the product to remove from the cart.</param>
+        /// <returns>A task that represents the asynchronous remove operation.</returns>
         public async Task RemoveItemFromCart(string productName)
         {
             var removeButton = _page.Locator(string.Format(RemoveButtonLocatorTemplate, productName));
@@ -50,19 +52,8 @@ namespace MyE2ETests.UI.Tests.Pages
         }
 
         /// <summary>
-        /// Removes all items from the cart.
+        /// Checks if the cart is empty by asserting that there are no products present.
         /// </summary>
-        public async Task RemoveAllItemsFromCart()
-        {
-            var count = await AllProducts.CountAsync();
-
-            for (int i = 0; i < count; i++)
-            {
-                var product = this.AllProducts.Nth(i);
-                await product.Locator("button").ClickAsync();
-            }
-        }
-
         public void IsCartEmpty()
         {
             Assertions.Expect(AllProducts).ToHaveCountAsync(0);

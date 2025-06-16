@@ -1,11 +1,7 @@
 ﻿using MyE2ETests.API.Tests.Models;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MyE2ETests.API.Tests.Utils
 {

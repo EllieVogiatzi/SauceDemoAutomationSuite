@@ -12,6 +12,10 @@ namespace UI.Tests.Pages
             _page = page;
         }
 
+        /// <summary>
+        /// Verifies that the current page URL contains the specified page name (case-insensitive).
+        /// </summary>
+        /// <param name="nameOfPage">The name of the page to verify in the URL.</param>
         public void VerifyPage(String nameOfPage) => Assert.That(_page.Url, Does.Contain(nameOfPage.ToLower()));
     }
 }

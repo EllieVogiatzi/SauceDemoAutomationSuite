@@ -34,11 +34,6 @@ namespace MyE2ETests.UI.Tests.Pages
             await addItemToCartLocator.ClickAsync();
         }
 
-        public async Task RemoveItemFromCart(String productName)
-        {
-            await RemoveButton.ClickAsync();
-        }
-
         /// <summary>
         /// Gets the price of the specified product.
         /// </summary>
@@ -47,8 +42,8 @@ namespace MyE2ETests.UI.Tests.Pages
         public async Task<float> GetPriceFromProduct(String productName)
         {
             var priceLocator = _page.Locator(string.Format(PriceLocatorTemplate, productName));
-            var priceText = await priceLocator.TextContentAsync(); // "$15.99"
-            var numericPrice = priceText.Replace("$", "").Trim();      // "15.99"
+            var priceText = await priceLocator.TextContentAsync();
+            var numericPrice = priceText.Replace("$", "").Trim();      
             return float.Parse(numericPrice, CultureInfo.InvariantCulture);
         }
 

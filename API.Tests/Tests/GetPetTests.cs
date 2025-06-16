@@ -1,12 +1,7 @@
 ﻿using MyE2ETests.API.Tests.Models;
 using MyE2ETests.API.Tests.Utils;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace API.Tests.Tests
 {
@@ -20,7 +15,7 @@ namespace API.Tests.Tests
             var response = await _api.GetPet(123);
             var body = await response.Content.ReadAsStringAsync();
             var pet = JsonConvert.DeserializeObject<Pet>(body);
-            Assert.Equal("Fluffy", pet.Name);
+            Assert.Equal("doggie", pet.Name);
         }
 
         [Fact]
